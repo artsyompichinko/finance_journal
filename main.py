@@ -151,7 +151,7 @@ class FinanceJournal:
         results = []
 
         for entry in self.entries:
-            if category is not None and entry['category'] != category:
+            if category is not None and entry['category'].lower() != category.lower():
                 continue
             if date is not None and entry['date'] != datetime.datetime.strptime(date, '%Y-%m-%d'):
                 continue

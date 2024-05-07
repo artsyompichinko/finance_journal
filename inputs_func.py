@@ -37,7 +37,7 @@ def inputs_for_add_entry(journal_: Any) -> None:
             continue
 
         description = input("Введите описание: ")
-        journal_.add_entry(datetime.datetime.strptime(date, "%Y-%m-%d"), category, float(amount), description)
+        journal_.add_entry(datetime.datetime.strptime(date, "%Y-%m-%d"), category.lower, float(amount), description)
         print("Запись добавлена успешно!")
         break
 
@@ -68,7 +68,7 @@ def inputs_for_edit_entry(entry_: Dict[str, Union[str, datetime.datetime, float]
                 print("Ошибка. Введите 'Доход' или 'Расход'. Попробуйте еще раз.")
                 continue
             else:
-                entry_['category'] = category_
+                entry_['category'] = category_.lower()
         amount_ = input("Введите сумму или оставьте строку пустой и нажмите Enter, чтобы не изменять сумму: ")
         if amount_ != '':
             if not check_f.check_numeric(amount_):
@@ -107,7 +107,7 @@ def inputs_for_search(journal_: Any) -> List[Dict[str, Union[str, datetime.datet
                 continue
         else:
             date_ = None
-        category_ = input("Введите категорию (Доход/Расход) или оставьте поле пустым и нажмите Enter: ")
+        category_ = input("Введите категорию (Доход/Расход) или оставьте поле пустым и нажмите Enter: ").lower()
         if category_.lower() != '':
             if not check_f.check_income_or_expense(category_):
                 print("Ошибка. Введите 'Доход' или 'Расход'. Попробуйте еще раз.")
